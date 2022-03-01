@@ -1,2 +1,25 @@
 #!/usr/bin/bash
-sudo pacman -Syu qtile
+# Installs necessary packages
+sudo pacman -Syu qtile rofi discord steam neofetch git feh
+
+# Install yay AUR helper
+cd /opt
+sudo git clone https://aur.archlinux.org/yay-git.git
+sudo chown -R tecmint:tecmint ./yay-git
+cd yay-git
+makepkg -si
+
+# Install bash prompt Starship
+yay -S starship
+
+# Cd into home directory and make directory path for wallpapers
+cd ~/ && mkdir desktop-essential-files/wallpapers
+
+# Move included wallpaper into wallpapers directory
+mv sos-wallpaper.jpg ~/desktop-essential-files/wallpapers
+
+# Move config file into proper location
+mv config.py ~/.config/qtile
+
+# Moves new .bashrc file into proper location
+mv .bashrc ~/
